@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirLanesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AirPlane">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SchedulId" Type="Int32" Nullable="false" />
+    <Property Name="PilotId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pilot" Relationship="Self.FK__AirPlanes__Pilot__3E52440B" FromRole="AirPlanes" ToRole="Pilots" />
+    <NavigationProperty Name="Schedule" Relationship="Self.FK__AirPlanes__Sched__3D5E1FD2" FromRole="AirPlanes" ToRole="Schedules" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Schedules" Relationship="Self.FK__Schedules__CityI__38996AB5" FromRole="Cities" ToRole="Schedules" />
+  </EntityType>
+  <EntityType Name="Pilot">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AirPlanes" Relationship="Self.FK__AirPlanes__Pilot__3E52440B" FromRole="Pilots" ToRole="AirPlanes" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AirPlanes" Relationship="Self.FK__AirPlanes__Sched__3D5E1FD2" FromRole="Schedules" ToRole="AirPlanes" />
+    <NavigationProperty Name="City" Relationship="Self.FK__Schedules__CityI__38996AB5" FromRole="Schedules" ToRole="Cities" />
+  </EntityType>
+  <Association Name="FK__AirPlanes__Pilot__3E52440B">
+    <End Role="Pilots" Type="Self.Pilot" Multiplicity="1" />
+    <End Role="AirPlanes" Type="Self.AirPlane" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pilots">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AirPlanes">
+        <PropertyRef Name="PilotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AirPlanes__Sched__3D5E1FD2">
+    <End Role="Schedules" Type="Self.Schedule" Multiplicity="1" />
+    <End Role="AirPlanes" Type="Self.AirPlane" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedules">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AirPlanes">
+        <PropertyRef Name="SchedulId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedules__CityI__38996AB5">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="Schedules" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedules">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirLanesDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AirPlanes" EntityType="Self.AirPlane" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="Pilots" EntityType="Self.Pilot" />
+    <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+    <AssociationSet Name="FK__AirPlanes__Pilot__3E52440B" Association="Self.FK__AirPlanes__Pilot__3E52440B">
+      <End Role="Pilots" EntitySet="Pilots" />
+      <End Role="AirPlanes" EntitySet="AirPlanes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AirPlanes__Sched__3D5E1FD2" Association="Self.FK__AirPlanes__Sched__3D5E1FD2">
+      <End Role="Schedules" EntitySet="Schedules" />
+      <End Role="AirPlanes" EntitySet="AirPlanes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedules__CityI__38996AB5" Association="Self.FK__Schedules__CityI__38996AB5">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Schedules" EntitySet="Schedules" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

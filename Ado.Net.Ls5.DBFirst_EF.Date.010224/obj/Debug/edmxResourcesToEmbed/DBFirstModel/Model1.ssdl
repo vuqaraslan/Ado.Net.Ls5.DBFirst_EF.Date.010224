@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AirLanesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AirPlanes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BrandName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SchedulId" Type="int" Nullable="false" />
+    <Property Name="PilotId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pilots">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schedules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__AirPlanes__Pilot__3E52440B">
+    <End Role="Pilots" Type="Self.Pilots" Multiplicity="1" />
+    <End Role="AirPlanes" Type="Self.AirPlanes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pilots">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AirPlanes">
+        <PropertyRef Name="PilotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AirPlanes__Sched__3D5E1FD2">
+    <End Role="Schedules" Type="Self.Schedules" Multiplicity="1" />
+    <End Role="AirPlanes" Type="Self.AirPlanes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedules">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AirPlanes">
+        <PropertyRef Name="SchedulId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Schedules__CityI__38996AB5">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+    <End Role="Schedules" Type="Self.Schedules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedules">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AirLanesDBModelStoreContainer">
+    <EntitySet Name="AirPlanes" EntityType="Self.AirPlanes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pilots" EntityType="Self.Pilots" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedules" EntityType="Self.Schedules" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AirPlanes__Pilot__3E52440B" Association="Self.FK__AirPlanes__Pilot__3E52440B">
+      <End Role="Pilots" EntitySet="Pilots" />
+      <End Role="AirPlanes" EntitySet="AirPlanes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AirPlanes__Sched__3D5E1FD2" Association="Self.FK__AirPlanes__Sched__3D5E1FD2">
+      <End Role="Schedules" EntitySet="Schedules" />
+      <End Role="AirPlanes" EntitySet="AirPlanes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Schedules__CityI__38996AB5" Association="Self.FK__Schedules__CityI__38996AB5">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Schedules" EntitySet="Schedules" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,193 @@
+﻿<Window x:Class="Ado.Net.Ls5.DBFirst_EF.Date._010224.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ado.Net.Ls5.DBFirst_EF.Date._010224" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <Border BorderBrush="Blue" BorderThickness="6" Grid.Column="0">
+        </Border>
+        <Border BorderBrush="Blue" BorderThickness="6" Grid.Column="1">
+        </Border>
+
+
+        <Grid Grid.Column="0">
+            <!--<DataGrid Name="dataGrid1"></DataGrid>-->
+
+            <ComboBox Name="AllCitiesCmbbx"
+                HorizontalAlignment="Left" Margin="20,20"
+                      ItemsSource="{Binding AllCities,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}" Width="150"
+                      Height="30" VerticalAlignment="Top"
+                      SelectedItem="{Binding SelectedCity,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction 
+                            Command="{Binding SelectedCityCommand,Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged}">
+
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<TextBlock Text="{Binding Id}">
+                                </TextBlock>-->
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="15"
+                                       ></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+
+
+            <ComboBox  HorizontalAlignment="Left" Margin="20,70,0,0"
+                       Width="150" Height="30" VerticalAlignment="Top"
+                       ItemsSource="{Binding CitySchedule,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"
+                       SelectedItem="{Binding SelectedSchedule,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction 
+                            Command="{Binding SelectedScheduleCommand,
+                            Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Date}">
+
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+
+
+            <ComboBox HorizontalAlignment="Center" Margin="20,20"
+                        Width="150" Height="30" VerticalAlignment="Top"
+                      ItemsSource="{Binding AirPlaneWhichSchedule,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedAirplane,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction 
+               Command="{Binding SelectedAirplaneCommand,
+               Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding BrandName,Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged}">
+
+                            </TextBlock>
+                        </StackPanel >
+
+                    </DataTemplate>
+
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Pilot Info" FontSize="15"
+                       VerticalAlignment="Top" HorizontalAlignment="Right"
+                       Margin="0,20,80,0" Background="LightBlue">
+            </TextBlock>
+
+            <TextBlock Width="150" FontSize="20" VerticalAlignment="Top"
+                       HorizontalAlignment="Right" Margin="0,45,20,0"
+                       Text="{Binding PilotFullName,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"
+                       Background="LightGray">
+            </TextBlock>
+
+
+            <TextBlock Width="150" FontSize="20"
+                       VerticalAlignment="Top" Background="LightGray"
+                       HorizontalAlignment="Right" Margin="0,80,20,0"
+                       Text="{Binding PilotAge,Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}">
+            </TextBlock>
+            <Button Height="50" Width="150" Content="Purchase" FontSize="20" 
+                    FontWeight="Bold" Background="LightGreen"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                    Margin="50,0,0,50" Command="{Binding PurchaseBtnCommand}">
+            </Button>
+
+        </Grid>
+
+
+
+
+        <Grid Grid.Column="1">
+
+            <StackPanel>
+                <TextBlock Text="Tickets" HorizontalAlignment="Center"
+                           FontSize="20" FontWeight="Bold" Margin="0,10,0,0">
+                </TextBlock>
+
+                <TextBlock Text="City" FontSize="15" Margin="15,10,0,0">
+                </TextBlock>
+                <TextBlock Text="{Binding ForCity}"
+                           FontSize="20" Margin="15,10,0,0">
+                </TextBlock >
+
+                <TextBlock Text="Fly Date" FontSize="15" Margin="15,30,0,0">
+                </TextBlock>
+                <TextBlock Text="{Binding ForSchedule}" 
+                           FontSize="20" Margin="15,10,0,0" >
+                </TextBlock>
+
+                <TextBlock Text="Airplane" FontSize="15" Margin="15,30,0,0">
+                </TextBlock>
+                <TextBlock Text="{Binding ForAirplane}"
+                    FontSize="20" Margin="15,10,0,0">
+                </TextBlock>
+
+
+                <TextBlock Text="Pilot Fullname" FontSize="15" 
+                           Margin="15,30,0,0">
+                </TextBlock>
+                <TextBlock Text="{Binding ForPilotFullName}"
+                    FontSize="20" Margin="15,10,0,0">
+                </TextBlock>
+                
+            </StackPanel>
+
+        </Grid>
+
+
+    </Grid>
+
+
+
+</Window>
