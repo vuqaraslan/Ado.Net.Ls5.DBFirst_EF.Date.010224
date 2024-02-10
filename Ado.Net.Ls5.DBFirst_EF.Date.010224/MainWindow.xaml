@@ -14,17 +14,12 @@
             <ColumnDefinition Width="4*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-
         <Border BorderBrush="Blue" BorderThickness="6" Grid.Column="0">
         </Border>
         <Border BorderBrush="Blue" BorderThickness="6" Grid.Column="1">
         </Border>
 
-
         <Grid Grid.Column="0">
-            <!--<DataGrid Name="dataGrid1"></DataGrid>-->
-
             <ComboBox Name="AllCitiesCmbbx"
                 HorizontalAlignment="Left" Margin="20,20"
                       ItemsSource="{Binding AllCities,Mode=TwoWay,
@@ -32,17 +27,14 @@
                       Height="30" VerticalAlignment="Top"
                       SelectedItem="{Binding SelectedCity,Mode=TwoWay,
                 UpdateSourceTrigger=PropertyChanged}">
-
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction 
                             Command="{Binding SelectedCityCommand,Mode=TwoWay,
                             UpdateSourceTrigger=PropertyChanged}">
-
                         </i:InvokeCommandAction>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -56,8 +48,6 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-
-
             <ComboBox  HorizontalAlignment="Left" Margin="20,70,0,0"
                        Width="150" Height="30" VerticalAlignment="Top"
                        ItemsSource="{Binding CitySchedule,Mode=TwoWay,
@@ -69,23 +59,18 @@
                         <i:InvokeCommandAction 
                             Command="{Binding SelectedScheduleCommand,
                             Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-
                         </i:InvokeCommandAction>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Date}">
-
                             </TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-
-
 
             <ComboBox HorizontalAlignment="Center" Margin="20,20"
                         Width="150" Height="30" VerticalAlignment="Top"
@@ -93,28 +78,22 @@
                 UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedAirplane,Mode=TwoWay,
                 UpdateSourceTrigger=PropertyChanged}">
-
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction 
                Command="{Binding SelectedAirplaneCommand,
                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-
                         </i:InvokeCommandAction>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding BrandName,Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged}">
-
                             </TextBlock>
                         </StackPanel >
-
                     </DataTemplate>
-
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
@@ -130,7 +109,6 @@
                        Background="LightGray">
             </TextBlock>
 
-
             <TextBlock Width="150" FontSize="20"
                        VerticalAlignment="Top" Background="LightGray"
                        HorizontalAlignment="Right" Margin="0,80,20,0"
@@ -142,14 +120,9 @@
                     VerticalAlignment="Bottom" HorizontalAlignment="Left"
                     Margin="50,0,0,50" Command="{Binding PurchaseBtnCommand}">
             </Button>
-
         </Grid>
 
-
-
-
         <Grid Grid.Column="1">
-
             <StackPanel>
                 <TextBlock Text="Tickets" HorizontalAlignment="Center"
                            FontSize="20" FontWeight="Bold" Margin="0,10,0,0">
@@ -173,21 +146,15 @@
                     FontSize="20" Margin="15,10,0,0">
                 </TextBlock>
 
-
                 <TextBlock Text="Pilot Fullname" FontSize="15" 
                            Margin="15,30,0,0">
                 </TextBlock>
                 <TextBlock Text="{Binding ForPilotFullName}"
                     FontSize="20" Margin="15,10,0,0">
                 </TextBlock>
-                
             </StackPanel>
-
         </Grid>
 
-
     </Grid>
-
-
 
 </Window>
