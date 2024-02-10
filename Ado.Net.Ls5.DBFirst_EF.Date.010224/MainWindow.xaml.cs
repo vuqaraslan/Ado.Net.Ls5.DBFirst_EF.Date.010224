@@ -140,12 +140,6 @@ namespace Ado.Net.Ls5.DBFirst_EF.Date._010224
             this.DataContext = this;
             AirLanesDBEntities1 context = new AirLanesDBEntities1();
 
-            //var cities = from c in context.Cities.Include(nameof(City.Schedules))
-            //             select c;
-
-            //var cityList = cities.ToList();
-            //dataGrid1.ItemsSource = cityList;
-
             var cities = from c in context.Cities.Include(nameof(City.Schedules))
                          select c;
 
